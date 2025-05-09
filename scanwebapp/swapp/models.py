@@ -1,7 +1,7 @@
 from flask_login import UserMixin
-from swapp import db
+from swapp import cred
 
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), unique=True, nullable=False)
-    password = db.Column(db.String(150), nullable=False)
+class User(UserMixin, cred.Model):
+    id = cred.Column(cred.Integer, primary_key=True)
+    username = cred.Column(cred.String(150), unique=True, nullable=False)
+    password = cred.Column(cred.String(150), nullable=False)

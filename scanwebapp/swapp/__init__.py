@@ -4,7 +4,8 @@ from flask_login import LoginManager
 from dotenv import load_dotenv
 import os
 
-db = SQLAlchemy()
+cred = SQLAlchemy()
+# db = SQLAlchemy() # coming
 login_manager = LoginManager()
 
 def create_app():
@@ -12,9 +13,9 @@ def create_app():
 
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "fallback-secret")
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cred.db'
 
-    db.init_app(app)
+    cred.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
 

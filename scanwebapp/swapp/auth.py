@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from swapp.models import User
-from swapp import db
+from swapp import cred
 
 auth = Blueprint('auth', __name__)
 
@@ -21,8 +21,8 @@ def register():
     if request.method == 'POST':
         hashed_pw = generate_password_hash(request.form['password'])
         new_user = User(username=request.form['username'], password=hashed_pw)
-        db.session.add(new_user)
-        db.session.commit()
+        cred.session.add(new_user)
+        cred.session.commit()
         flash('User created. You can now log in.')
         return redirect(url_for('auth.login'))
     return render_template('register.html')
